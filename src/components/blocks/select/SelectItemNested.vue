@@ -74,10 +74,10 @@ import { ref, toRefs, watch } from "vue"
           marginLeft: `${ item.raw.depth * 2 }rem`
         }"
         :color="all_values_leaves.includes ( item.value )
-          ? 'green'
+          ? 'success'
           : all_values_ancestors.includes ( item.value )
             ? 'gray-darken-3'
-            : 'gray-lighten-2'"
+            : 'surface'"
         />
     </template>
 
@@ -98,7 +98,7 @@ import { ref, toRefs, watch } from "vue"
             :icon="`fas fa-circle-${ show_create_subtopic ? 'minus' : 'plus' }`"
             class="pl-2"
             size="x-small"
-            :color="show_create_subtopic ? 'gray-darken-3' : 'blue'"
+            :color="show_create_subtopic ? 'gray-darken-3' : 'primary'"
             :style="{
               opacity: hover ? 1 : 0,
             }"

@@ -207,7 +207,7 @@
       ok: {
         label: 'Move to Trash',
         icon: 'check',
-        color: 'red',
+        color: 'error',
         use_loader: true,
       },
       cancel: {
