@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/main.sass'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 import InnerCard from './components/blocks/card/InnerCard.vue'
