@@ -32,9 +32,7 @@
     <VCard>
       <VCardTitle
         class="bg-secondary">
-        <span>
-          {{ dialog.title }}
-        </span>
+        <span v-html="dialog.title"></span>
       </VCardTitle>
       <VCardText
         v-if="dialog.message"
