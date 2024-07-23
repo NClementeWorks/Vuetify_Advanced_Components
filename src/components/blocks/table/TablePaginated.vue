@@ -282,48 +282,54 @@
     </thead>
     <tbody>
 
-      <tr
-        v-if="loading"
-        class="w-100 overflow-hidden"
-        >
-        <td
-          :colspan="Object.entries ( columns )?.length"
+      <TransitionGroup name="table_paginated_rows">
+        <tr
+          v-if="loading"
+          key="table_paginated_loading"
+          class="w-100 overflow-hidden"
           >
-          <div class="w-100 d-flex align-center justify-center overflow-hidden pa-4">
-            <VProgressCircular />
-          </div>
+          <td
+            :colspan="Object.entries ( columns )?.length"
+            >
+            <div class="w-100 d-flex align-center justify-center overflow-hidden pa-4">
+              <VProgressCircular />
+            </div>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
 
-      <tr
-        v-for="item in data"
-        :key="item [ data_id ]"
-        :class="{
-          'text-disabled': is_row_action_loading [ item.id ]?.is_loading,
-        }"
-        >
-        <td v-for="col in columns_array" :key="col._name">
+        <tr
+          v-for="item in data"
+          :key="item [ data_id ]"
+          :class="{
+            'text-disabled': is_row_action_loading [ item.id ]?.is_loading,
+          }"
+          >
+          <td v-for="col in columns_array" :key="col._name">
 
-          <slot :name="col._name" :item="item">
-            {{ get_data_property ( item, col ) }}
-          </slot>
+            <slot :name="col._name" :item="item">
+              {{ get_data_property ( item, col ) }}
+            </slot>
 
-        </td>
-        <td v-if="has_row_actions">
-          <IconBtn
-            v-for="[ key, action ] in Object.entries ( row_actions )" :key="key"
-            :icon="`fas fa-${ action.icon }`"
-            size="x-small"
-            class="row_action"
-            :class="{
-              loading: is_row_action_loading [ item.id ] [ key ], 
-            }"
-            :loading="is_row_action_loading [ item.id ] [ key ]"
-            @click="do_row_action ( action, item, key )"
-            />
-        </td>
-      </tr>
+          </td>
+          <td v-if="has_row_actions" class="d-flex flex-nowrap align-center jusifty-right">
+            <IconBtn
+              v-for="[ key, action ] in Object.entries ( row_actions )" :key="key"
+              :icon="`fas fa-${ action.icon }`"
+              size="x-small"
+              class="row_action"
+              :class="{
+                loading: is_row_action_loading [ item.id ] [ key ], 
+              }"
+              :loading="is_row_action_loading [ item.id ] [ key ]"
+              :data-key="key"
+              :data-item_id="item.id"
+              :data-laoding="is_row_action_loading [ item.id ] [ key ]"
+              @click="do_row_action ( action, item, key )"
+              />
+          </td>
+        </tr>
+      </TransitionGroup>
     </tbody>
   </VTable>
 
