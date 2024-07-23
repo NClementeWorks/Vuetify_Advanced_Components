@@ -12,6 +12,7 @@ import SelectNested from './components/blocks/select/SelectNested.vue'
 import TablePaginated from './components/blocks/table/TablePaginated.vue'
 import ExpandableTree from './components/blocks/tree/ExpandableTree.vue'
 import ExpandableTreeBranch from './components/blocks/tree/ExpandableTreeBranch.vue'
+import LoaderBlanket from './components/blocks/loader/LoaderBlanket.vue'
 
 import vuetify_default_theme from './assets/js/vuetify_theme'
 
@@ -29,6 +30,7 @@ export {
   TablePaginated,
   ExpandableTree,
   ExpandableTreeBranch,
+  LoaderBlanket,
 
   vuetify_default_theme,
   
