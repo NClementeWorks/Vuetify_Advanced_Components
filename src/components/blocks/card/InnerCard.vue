@@ -23,6 +23,7 @@ import { toRefs } from "vue"
       class="px-0 w-100 d-flex align-center justify-space-between"
       >
       <h2>{{ title }}</h2>
+      <slot name="options" :title="title"></slot>
     </VCardTitle>
 
 
