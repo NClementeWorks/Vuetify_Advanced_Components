@@ -237,7 +237,7 @@
         <SecondaryBtn
           v-if="create_new_callback"
           :loading="creating_new_item"
-          @click="create_new_item"
+          @click.prevent="create_new_item"
           >
           Add New
         </SecondaryBtn>
