@@ -20,10 +20,11 @@ import { toRefs } from "vue"
 
     <VCardTitle
       v-if="title?.length"
-      class="px-0"
+      class="px-0 w-100 d-flex align-center justify-space-between"
       >
       <h2>{{ title }}</h2>
     </VCardTitle>
+
 
     <VCardText class="px-0">
       <slot></slot>
