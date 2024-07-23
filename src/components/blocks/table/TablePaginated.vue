@@ -5,6 +5,10 @@
   import { capitalize } from '@/composables/utils.composable'
   import { computed, ref, toRefs, watch } from 'vue'
 
+  defineOptions ({
+    inheritAttrs: false,
+  })
+
   const props = defineProps ({
     columns: {
       type: Object,
@@ -225,7 +229,8 @@
 <template>
   
   <VTable
-    class="bg-transparent"
+    class="table_paginated bg-transparent"
+    v-bind="$attrs"
     density="compact"
     fixed-header
     hover
