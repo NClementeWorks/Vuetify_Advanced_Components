@@ -49,7 +49,11 @@
     delete_dialog_title: {
       type: Function,
       default: () => 'Moving item to trash',
-    }
+    },
+    delete_dialog_button_text: {
+      type: String,
+      default: 'Move to Trash',
+    },
   })
 
   const {
@@ -62,6 +66,7 @@
     create_new_callback,
     row_actions,
     delete_dialog_title,
+    delete_dialog_button_text,
   } = toRefs ( props )
 
   const emit = defineEmits ([
@@ -215,7 +220,7 @@
     show: false,
     actions: {
       ok: {
-        label: 'Move to Trash',
+        label: delete_dialog_button_text.value,
         icon: 'check',
         color: 'error',
         use_loader: true,
