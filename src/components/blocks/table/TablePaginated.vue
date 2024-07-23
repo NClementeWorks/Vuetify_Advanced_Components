@@ -173,9 +173,10 @@
 
       if ( key === 'delete' ) {
         dialog.value = delete_dialog_basis
-        dialog.value.title = delete_dialog_title ( item )
-        dialog.value.actions.ok.click = () => 
-          do_row_action_with_loaders ( row_action, item, key )
+        dialog.value.title = delete_dialog_title.value ( item )
+        dialog.value.actions.ok.click = done => {
+          do_row_action_with_loaders ( row_action, item, key, done )
+        }
         dialog.value.show = true
       }
 
@@ -185,20 +186,31 @@
     }
   }
 
-  function do_row_action_with_loaders ( row_action, item, key ) {
-    row_action.click ( item, row_action_done_callback )
-    is_row_action_loading.value [ item.id ] [ key ] = true
-    is_row_action_loading.value [ item.id ].is_loading = true
+  function do_row_action_with_loaders ( row_action, item, key, modal_callback ) {
+    if ( row_action.use_loader ) {
+      is_row_action_loading.value [ item.id ] [ key ] = true
+      is_row_action_loading.value [ item.id ].is_loading = true
+    }
+    row_action.click ( item, row_action_done_callback ( row_action, item, key, modal_callback ) )
   }
   
-  function row_action_done_callback ( reload ) {
-    dialog.value.show = false
+  function row_action_done_callback ( row_action, item, key, modal_callback ) {
+    return reload => {
 
-    if ( reload )
-      load_items ( data_callback.value )
+      if ( row_action.use_loader ) {
+        dialog.value.show = false
+        is_row_action_loading.value [ item.id ] [ key ] = false
+        is_row_action_loading.value [ item.id ].is_loading = false
+      }
+
+      if ( modal_callback ) modal_callback ()
+
+      if ( reload )
+        load_items ( data_callback.value )
+    }
   }
 
-  const is_row_action_loading = ref ( {} )
+  const is_row_action_loading = ref ( null )
   function set_is_row_action_loading () {
     is_row_action_loading.value = data.value.reduce ( ( obj, item ) => ({
       ...obj,

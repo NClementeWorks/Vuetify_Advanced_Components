@@ -14,10 +14,12 @@
   const { dialog } = toRefs ( props )
 
   function do_action_click ( action ) {
-    if ( action.use_loader )
+    if ( action.use_loader ) {
       action.loading = true
-    
-    action.click()
+      const done_callback = () => { action.loading = false }
+      action.click ( done_callback )
+    }
+    action.click ()
   }
 
   const show_dialog = computed ( () => !!dialog.value?.show )
