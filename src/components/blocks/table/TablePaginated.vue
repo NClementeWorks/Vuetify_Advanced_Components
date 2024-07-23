@@ -3,7 +3,7 @@
 <script setup>
   import DialogBasic from '@/components/blocks/dialog/DialogBasic.vue'
   import { capitalize } from '@/composables/utils.composable'
-  import { computed, ref, toRefs, watch } from 'vue'
+  import { computed, ref, toRefs, watch, defineExpose } from 'vue'
 
   defineOptions ({
     inheritAttrs: false,
@@ -133,6 +133,10 @@
 
   load_items ( data_callback.value )
 
+  function reload_data () {
+    load_items ( data_callback.value )
+  }
+
   /**
    * Create New Item
    */
@@ -223,6 +227,8 @@
       }
     }
   }
+
+  defineExpose ({ reload_data })
 
 </script>
 
