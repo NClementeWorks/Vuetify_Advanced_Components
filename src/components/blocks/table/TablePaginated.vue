@@ -62,6 +62,7 @@
 
   const emit = defineEmits ([
     'load:data',
+    'add:new',
   ])
 
   /**
@@ -133,6 +134,7 @@
    */
   const creating_new_item = ref ( false )
   function create_new_item () {
+    emit ( 'add:new' )
     if ( create_new_callback.value ) {
       creating_new_item.value = true
       create_new_callback.value (
