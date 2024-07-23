@@ -337,17 +337,3 @@
     :dialog="dialog"
     />
 </template>
-
-<style lang="sass">
-.v-text-field .v-field--no-label input, .v-text-field .v-field--active input
-  border: none
-
-.row_action
-  opacity: 0
-
-  &.loading
-    opacity: 1
-
-  tr:hover &
-    opacity: 1
-</style>
