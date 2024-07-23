@@ -115,7 +115,7 @@
       })
       .then ( res => {
         data.value = res.data
-        total_pages.value = res.headers [ 'x-wp-totalpages' ]
+        total_pages.value = res.headers ? res.headers [ 'x-wp-totalpages' ] : 1
         set_is_row_action_loading ()
         emit ( 'load:data', data.value )
       })
